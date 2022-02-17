@@ -1,1 +1,13 @@
+server:
+  port: 8080
 
+
+customerClient:
+  url: 'localhost:8082'
+
+feign:
+  client:
+    config:
+      customerClient:
+        connectTimeout: 5000
+        readTimeout: 5000
