@@ -7,6 +7,7 @@ import com.luisbilecki.apigateway.dto.CalculatePointsRequest
 import com.luisbilecki.apigateway.dto.CalculatePointsResponse
 import com.luisbilecki.apigateway.dto.CustomerResponse
 import feign.FeignException
+import mu.KotlinLogging
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service
 
@@ -19,6 +20,8 @@ class CustomerService {
     @Autowired
     private lateinit var pointsClient : PointsCalculatorClient
 
+    private val logger = KotlinLogging.logger {}
+
     fun calculateCustomerPoints(cpf: String, pointsRequest: CalculatePointsRequest): CalculateCustomerPointsResponse? {
         val customer = findCustomer(cpf)
         val pointsResult = calculatePoints(pointsRequest)
@@ -29,6 +32,7 @@ class CustomerService {
         try {
             return customerClient.getCustomer(cpf)
         } catch(e: FeignException) {
+            logger.error { "CustomerService.findCustomer - error during fetch customer data - error: ${e.message}" }
             return null;
         }
     }
@@ -37,6 +41,7 @@ class CustomerService {
         try {
             return pointsClient.calculatePoints(pointsRequest)
         } catch(e: FeignException) {
+            logger.error { "CustomerService.calculatePoints - error during calculate points - error: ${e.message}" }
             return null;
         }
     }

@@ -29,6 +29,8 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.springframework.cloud:spring-cloud-starter-openfeign")
+	implementation("io.github.microutils:kotlin-logging-jvm:2.0.11")
+	implementation("ch.qos.logback:logback-classic:1.2.6")
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
