@@ -5,6 +5,9 @@ server:
 customerClient:
   url: 'localhost:8082'
 
+pointsCalculatorClient:
+  url: 'localhost:8081'
+
 feign:
   client:
     config:
