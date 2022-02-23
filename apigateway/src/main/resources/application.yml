@@ -4,11 +4,7 @@ server:
 spring:
   application:
     name: api-gateway-service
-#  sleuth:
-#    otel:
-#      exporter:
-#        otlp:
-#          endpoint: http://localhost:4317
+
   sleuth:
     propagation:
       type: B3,W3C
