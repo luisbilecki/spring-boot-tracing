@@ -3,6 +3,7 @@
 Esse repositório tem como finalidade mostrar como funciona a observalidade em microserviços.
 Para isto estamos utilizando um *api gateway* como ponto de entrada para as requisições.
 Também foi desenvolvido um pequeno microserviço para criar e retornar clientes e outro para calcular a quantidade de pontos.
+Por fim estes projetos foram inspirados após a leitura do material disponível em https://reflectoring.io/spring-boot-tracing/.
 
 
 ## Requerimentos
