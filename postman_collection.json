@@ -1,0 +1,65 @@
+{
+	"info": {
+		"_postman_id": "4636d210-ae7d-48ce-8cb2-049e3fe23288",
+		"name": "FOS - Talks - 7 de abril",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Calcular quantidade de pontos pelo api gateway",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"price\": 100,\n    \"currency\": \"BRL\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/customers/22233366638/points",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customers",
+						"22233366638",
+						"points"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Criar customer pelo api gateway",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"Luís\",\n    \"cpf\": \"22233366638\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/customers",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"customers"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
