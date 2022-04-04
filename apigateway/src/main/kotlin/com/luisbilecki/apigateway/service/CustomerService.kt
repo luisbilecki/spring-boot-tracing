@@ -2,10 +2,7 @@ package com.luisbilecki.apigateway.service
 
 import com.luisbilecki.apigateway.client.CustomerClient
 import com.luisbilecki.apigateway.client.PointsCalculatorClient
-import com.luisbilecki.apigateway.dto.CalculateCustomerPointsResponse
-import com.luisbilecki.apigateway.dto.CalculatePointsRequest
-import com.luisbilecki.apigateway.dto.CalculatePointsResponse
-import com.luisbilecki.apigateway.dto.CustomerResponse
+import com.luisbilecki.apigateway.dto.*
 import feign.FeignException
 import mu.KotlinLogging
 import org.springframework.beans.factory.annotation.Autowired
@@ -22,6 +19,15 @@ class CustomerService {
 
     private val logger = KotlinLogging.logger {}
 
+    fun createCustomer(customerData: CreateCustomerRequest): Boolean {
+        return try {
+            customerClient.createCustomer(customerData)
+        } catch (e: FeignException) {
+            logger.error { "CustomerService.createCustomer - error during creating customer - error: ${e.message}" }
+            false;
+        }
+    }
+
     fun calculateCustomerPoints(cpf: String, pointsRequest: CalculatePointsRequest): CalculateCustomerPointsResponse? {
         val customer = findCustomer(cpf)
         val pointsResult = calculatePoints(pointsRequest)
@@ -29,20 +35,20 @@ class CustomerService {
     }
 
     private fun findCustomer(cpf: String) : CustomerResponse? {
-        try {
-            return customerClient.getCustomer(cpf)
+        return try {
+            customerClient.getCustomer(cpf)
         } catch(e: FeignException) {
             logger.error { "CustomerService.findCustomer - error during fetch customer data - error: ${e.message}" }
-            return null;
+            null;
         }
     }
 
     private fun calculatePoints(pointsRequest: CalculatePointsRequest) : CalculatePointsResponse? {
-        try {
-            return pointsClient.calculatePoints(pointsRequest)
+        return try {
+            pointsClient.calculatePoints(pointsRequest)
         } catch(e: FeignException) {
             logger.error { "CustomerService.calculatePoints - error during calculate points - error: ${e.message}" }
-            return null;
+            null;
         }
     }
 
